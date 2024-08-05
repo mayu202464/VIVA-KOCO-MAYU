@@ -126,6 +126,39 @@
         </section>
     </footer>
 
-    <script src="scripts.js"></script>
+    <script>
+        const carouselContainer = document.querySelector('.carousel-container');
+const slides = document.querySelectorAll('.carousel-slide');
+const nextButton = document.getElementById('next');
+const prevButton = document.getElementById('prev');
+let currentIndex = 0;
+
+function showSlide(index) {
+    const totalSlides = slides.length;
+    if (index >= totalSlides) {
+        currentIndex = 0;
+    } else if (index < 0) {
+        currentIndex = totalSlides - 1;
+    } else {
+        currentIndex = index;
+    }
+    carouselContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+nextButton.addEventListener('click', () => {
+    showSlide(currentIndex + 1);
+});
+
+prevButton.addEventListener('click', () => {
+    showSlide(currentIndex - 1);
+});
+
+// Auto-slide functionality (optional)
+setInterval(() => {
+    showSlide(currentIndex + 1);
+}, 5000);
+
+        
+    </script>
 </body>
 </html>
